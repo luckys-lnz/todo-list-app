@@ -1,28 +1,30 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
-import { text } from 'stream/consumers';
 
 @Component({
   selector: 'app-todo-list',
-  standalone: true,
-  imports: [],
   templateUrl: './todo-list.component.html',
-  styleUrl: './todo-list.component.css',
+  styleUrls: ['./todo-list.component.css'],
+  standalone: true,
+  imports: [CommonModule, FormsModule, TodoItemComponent]
 })
 export class TodoListComponent {
-  todo = [{ text: 'learn Angular' }, { text: 'Build with Angular' }];
+  todos = [
+    { text: 'Learn Angular' },
+    { text: 'Build an app' }
+  ];
   newTodoText = '';
 
   addTodo() {
     if (this.newTodoText.trim()) {
-      this.todo.push({ text: this.newTodoText });
+      this.todos.push({ text: this.newTodoText });
       this.newTodoText = '';
     }
   }
 
   removeTodo(index: number) {
-    this.todo.splice(index, 1);
+    this.todos.splice(index, 1);
   }
 }
